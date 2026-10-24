@@ -76,7 +76,7 @@
   min-width: 0;
   font-family: inherit;
 }
-.fit-app button {
+.fit-app :where(button) {
   font: inherit;
   color: inherit;
   cursor: pointer;
@@ -85,7 +85,7 @@
   padding: 0;
   touch-action: manipulation;
 }
-.fit-app button:disabled {
+.fit-app :where(button:disabled) {
   cursor: not-allowed;
   opacity: 0.5;
 }
