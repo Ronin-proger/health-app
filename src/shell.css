@@ -1,0 +1,13 @@
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: #07080c;
+}
+
+/* Отдельное приложение: крестик в шапке возвращал в игру, здесь его нет. */
+.fx-chrome-row > button.fx-icon-btn:last-child {
+  visibility: hidden;
+  pointer-events: none;
+}
