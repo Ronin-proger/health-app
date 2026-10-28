@@ -21,7 +21,6 @@ import {
   Trophy,
 } from 'lucide-react';
 import { useFitness } from '../FitnessContext';
-import { exportProgressPdf } from '../pdfExport';
 import { exportProgressCsv } from '../csvExport';
 import { ensureNotificationPermission } from '../notifications';
 import { fitAchievement } from '../catalog/ruLabels';
@@ -514,7 +513,7 @@ export function HealthProfileScreen({ displayName }: { displayName: string }) {
         <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => refreshHealth()}>
           <RefreshCw size={16} className={syncing ? 'fx-spin' : ''} /> {syncing ? c.profile.syncing : c.profile.syncNow}
         </button>
-        <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => exportProgressPdf({ fitness, health, displayName })}>
+        <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => void import('../pdfExport').then((m) => m.exportProgressPdf({ fitness, health, displayName }))}>
           <Download size={16} /> PDF
         </button>
         <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => exportProgressCsv(fitness)}>

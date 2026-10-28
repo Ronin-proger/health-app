@@ -25,7 +25,7 @@ function readStoredLocale(): Locale {
     const v = localStorage.getItem(LOCALE_STORAGE_KEY);
     if (v === 'en' || v === 'ru') return v;
   } catch {
-    /* */
+    // storage unavailable (private mode or quota): keep in-memory value
   }
   return 'ru';
 }
@@ -38,7 +38,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     try {
       localStorage.setItem(LOCALE_STORAGE_KEY, l);
     } catch {
-      /* */
+      // storage unavailable (private mode or quota): keep in-memory value
     }
   }, []);
 

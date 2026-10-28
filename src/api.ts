@@ -7,7 +7,7 @@ function getInitData(): string {
 
 function devHeaders(): Record<string, string> {
   const h: Record<string, string> = { 'Content-Type': 'application/json' };
-  if (!getInitData()) h['X-Dev-User-Id'] = '123456789';
+  if (import.meta.env.DEV && !getInitData()) h['X-Dev-User-Id'] = '123456789';
   h['X-Tz-Offset'] = String(-new Date().getTimezoneOffset());
   return h;
 }

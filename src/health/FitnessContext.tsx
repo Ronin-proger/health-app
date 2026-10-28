@@ -227,7 +227,7 @@ export function FitnessProvider({
         await api.logHealth('workout', 5);
         await refreshHealth();
       } catch {
-        /* */
+        // offline: the set is already persisted locally
       }
       return isPr;
     },
@@ -259,12 +259,8 @@ export function FitnessProvider({
       let next = applyXp({ ...fitness, workouts: [rec, ...fitness.workouts] }, xpGain);
       persist(next);
       setLive(null);
-      try {
-        api.logHealth('workout', durationMin);
-        refreshHealth();
-      } catch {
-        /* */
-      }
+      // fire-and-forget: the session is already persisted locally
+      api.logHealth('workout', durationMin).then(refreshHealth, () => undefined);
       return { xp: xpGain, prCount: 0, workout: rec };
     },
     [live, fitness, corpusStreak, persist, refreshHealth]

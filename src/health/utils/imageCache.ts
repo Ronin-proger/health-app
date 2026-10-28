@@ -5,7 +5,7 @@ export function markImageOk(url: string) {
   try {
     sessionStorage.setItem(`fit-img:${url.slice(-48)}`, 'ok');
   } catch {
-    /* */
+    // storage unavailable (private mode or quota): keep in-memory value
   }
 }
 

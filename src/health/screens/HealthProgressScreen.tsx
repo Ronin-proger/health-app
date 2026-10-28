@@ -8,7 +8,6 @@ import { Period, aggregateProgress, weightProgressSeries } from '../stats';
 import { prByExercise } from '../achievements';
 import { caloriesSeries, focusSplit, PROGRESS_GROUPS, volumeSeries } from '../progressData';
 import { exportProgressCsv } from '../csvExport';
-import { exportProgressPdf } from '../pdfExport';
 import { ACCENT, CHART_COLORS, FxArea, FxDonut, FxStackBars } from '../components/FxCharts';
 import { CountUp, rise, stagger } from '../components/FxBits';
 import { fitExerciseName } from '../catalog/ruLabels';
@@ -251,7 +250,7 @@ export function HealthProgressScreen({ displayName }: { displayName: string }) {
       </motion.section>
 
       <motion.div variants={rise} className="fx-export">
-        <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => exportProgressPdf({ fitness, health, displayName })}>
+        <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => void import('../pdfExport').then((m) => m.exportProgressPdf({ fitness, health, displayName }))}>
           <FileText size={16} /> {c.progress.export} {c.progress.pdf}
         </button>
         <button type="button" className="fx-btn fx-btn--ghost fx-btn--block" onClick={() => exportProgressCsv(fitness)}>

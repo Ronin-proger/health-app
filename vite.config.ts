@@ -3,6 +3,18 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  build: {
+    // recharts is the largest single dependency and ships as its own cacheable chunk
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          charts: ['recharts'],
+          motion: ['framer-motion'],
+        },
+      },
+    },
+  },
   server: {
     port: 5174,
     host: true,
